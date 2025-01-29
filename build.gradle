@@ -23,6 +23,7 @@ import java.util.regex.Pattern
 
 buildscript {
   repositories {
+    mavenLocal()
     gradlePluginPortal()
   }
   dependencies {
@@ -37,6 +38,8 @@ buildscript {
     classpath 'com.gorylenko.gradle-git-properties:gradle-git-properties:2.4.2'
     classpath 'com.palantir.gradle.gitversion:gradle-git-version:3.1.0'
     classpath 'org.openapitools:openapi-generator-gradle-plugin:7.10.0'
+    classpath 'com.adarshr:gradle-test-logger-plugin:4.0.0'
+    classpath 'com.teedo:test-metrics:1.0.0'
   }
 }
 
@@ -129,6 +132,8 @@ subprojects {
   }
 
   apply plugin: 'java-library'
+  apply plugin: 'com.adarshr.test-logger'
+  apply plugin: 'com.teedo.test-metrics'
 
   if (project.name in REVAPI_PROJECTS) {
     apply plugin: 'org.revapi.revapi-gradle-plugin'
